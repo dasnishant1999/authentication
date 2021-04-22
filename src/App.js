@@ -5,6 +5,7 @@ import AuthContextProvider from "./AuthContext";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import Dashboard from "./Dashboard";
+import PrivateRoute from "./PrivateRoute";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       <AuthContextProvider>
         <Router>
           <Switch>
-            <Route exact path="/" component={Dashboard}></Route>
+            <PrivateRoute exact path="/" component={Dashboard}></PrivateRoute>
             <Route path="/signup" component={SignUp}></Route>
             <Route path="/signin" component={SignIn}></Route>
           </Switch>

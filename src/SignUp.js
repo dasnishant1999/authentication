@@ -18,16 +18,20 @@ function SignUp() {
     e.preventDefault();
     if (passwordRef.current.value !== confirmPasswordRef.current.value) {
       seterror("Passwords do not match");
-    }
-    try {
-      seterror("");
-      setloading(true);
-      await signup(emailRef.current.value, passwordRef.current.value);
-      history.push("/");
-    } catch (error) {
-      console.log(error);
-      seterror("Failed to create account");
-      setloading(false);
+    } else if (passwordRef.current.value.length < 6) {
+      console.log(passwordRef.current.value.length);
+      seterror("Password length should be more than 5");
+    } else {
+      try {
+        seterror("");
+        setloading(true);
+        await signup(emailRef.current.value, passwordRef.current.value);
+        history.push("/");
+      } catch (error) {
+        console.log(error.code);
+        seterror(error.code);
+        setloading(false);
+      }
     }
   }
 
